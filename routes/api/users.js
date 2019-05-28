@@ -11,7 +11,10 @@ const validateLoginInput = require("../../validation/login");
 // Load Models
 const User = require("../../models/User");
 
+// Matches /api/users
 
+
+// TO-DO: Move the logic to a 'userController'
 
 // @route POST api/users/register
 // @desc Register User
@@ -41,10 +44,11 @@ router.post("/register", (req, res) => {
                 user_pass: req.body.user_pass
             });
             
+            //console.log('newUser', newUser);
 
-            // Hash pass before saving in database
+            // Generate a salt to use to hash password
             bcrypt.genSalt(10, (err, salt) => {
-                //console.log('newUser', newUser);
+                // Hash password before saving in db
                 bcrypt.hash(newUser.user_pass, salt, (err, hash) => {
                     if (err) throw err;
                     newUser.user_pass = hash;
@@ -79,23 +83,25 @@ router.post("/login", (req, res) => {
     // Find user by email
     User.findOne({ user_email: email })
         .then(user => {
-            // Return error if email does not exist
+            // Return error if email does not exist in db
             if(!user) {
                 return res.status(404).json({emailNotFound: "Email not found!"})
             }
             
-            // Check pass of the user
+            // Check password of the user
             bcrypt.compare(pass, user.user_pass)
             .then(isMatch => {
-                // passs matched
+                // Password Matched!
                 if(isMatch) {
-                    // create JWT payload
+                    // Create JWT payload
                     const payload = {
                         id: user.id,
-                        name: user.name
+                        user_name: user.user_name
                     }
 
-                    // sign token
+                    //console.log('payload', payload);
+                    
+                    // Sign Token and Send it
                     jwt.sign(
                         payload,
                         keys.secretOrKey,
