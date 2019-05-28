@@ -7,35 +7,35 @@ module.exports = function validateRegisterInput(data) {
     let errors = {};
 
     // Convert empty fields to an empty string so we can use validator functions
-    data.name = !isEmpty(data.name) ? data.name : "";
-    data.email = !isEmpty(data.email) ? data.email : "";
-    data.password = !isEmpty(data.password) ? data.password : "";
-    data.password2 = !isEmpty(data.password2) ? data.password2 : "";
+    data.user_name = !isEmpty(data.user_name) ? data.user_name : "";
+    data.user_email = !isEmpty(data.user_email) ? data.user_email : "";
+    data.user_pass = !isEmpty(data.user_pass) ? data.user_pass : "";
+    data.user_pass2 = !isEmpty(data.user_pass2) ? data.user_pass2 : "";
 
     // Name checks
-    if (Validator.isEmpty(data.name)) {
-        errors.name = "Name is required";
+    if (Validator.isEmpty(data.user_name)) {
+        errors.user_name = "Name is required";
     }
 
     // Email checks
-    if (Validator.isEmpty(data.email)) {
-        errors.email = "Email is required";
-    } else if (!Validator.isEmail(data.email)) {
-        errors.email = "Email is invalid";
+    if (Validator.isEmpty(data.user_email)) {
+        errors.user_email = "Email is required";
+    } else if (!Validator.isEmail(data.user_email)) {
+        errors.user_email = "Email is invalid";
     }
     
     // Password checks
-    if (Validator.isEmpty(data.password)) {
-        errors.password = "Password is required";
+    if (Validator.isEmpty(data.user_pass)) {
+        errors.user_pass = "Password is required";
     }
-    if (Validator.isEmpty(data.password2)) {
-        errors.password2 = "Confirm password field is required";
+    if (Validator.isEmpty(data.user_pass2)) {
+        errors.user_pass2 = "Confirm pass field is required";
     }
-    if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-        errors.password = "Password must be at least 6 characters";
+    if (!Validator.isLength(data.user_pass, { min: 6, max: 30 })) {
+        errors.user_pass = "Password must be at least 6 characters";
     }
-    if (!Validator.equals(data.password, data.password2)) {
-        errors.password2 = "Passwords must match";
+    if (!Validator.equals(data.user_pass, data.user_pass2)) {
+        errors.user_pass2 = "Passwords must match";
     }
 
     // isValid = true if errors object is empty :)

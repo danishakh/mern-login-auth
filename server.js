@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-//const routes = require("./routes");
+const routes = require("./routes");
 const logger = require("morgan");
 const cors = require('cors');
 const keys = require("./config/keys.js");
 const path = require('path');
+const passport = require('passport');
 
 
 const app = express();
@@ -24,8 +25,14 @@ app.use(bodyParser.json());
 // Enable CORS by using it before your routes. This will allow axios to trigger API calls to server port (from a diff port 3000 -> 3001) 
 app.use(cors());
 
+// Passport Middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
+
 // Add routes
-// app.use(routes);
+app.use(routes);
 
 
 // Define any API routes before this runs
