@@ -13,6 +13,7 @@ const User = require("../../models/User");
 
 // Matches /api/users
 
+
 // TO-DO: Move the logic to a 'userController'
 
 // @route POST api/users/register
