@@ -13,12 +13,12 @@ const User = require("../../models/User");
 
 // Matches /api/users
 
-
 // TO-DO: Move the logic to a 'userController'
 
 // @route POST api/users/register
 // @desc Register User
 // @access Public
+
 router.post("/register", (req, res) => {
 
     //console.log(req.body);
@@ -57,7 +57,7 @@ router.post("/register", (req, res) => {
                     newUser
                         .save()
                         .then(user => res.json(user))
-                        .catch(err => res.json(err));
+                        .catch(err => console.log(err));
                 });
             });
         }     
@@ -85,7 +85,11 @@ router.post("/login", (req, res) => {
         .then(user => {
             // Return error if email does not exist in db
             if(!user) {
-                return res.status(404).json({emailNotFound: "Email not found!"})
+                // This is a security flaw - rather go with 401 Unauthorized
+                // return res.status(404).json({emailNotFound: "Email not found!"})
+                
+                // This is a better approach to overcome the above security threat
+                return res.status(401).json({error: "Auth Failed - Incorrect Username/Password!"});
             }
             
             // Check password of the user
@@ -99,25 +103,30 @@ router.post("/login", (req, res) => {
                         user_name: user.user_name
                     }
 
-                    //console.log('payload', payload);
+                    console.log('payload', payload);
                     
                     // Sign Token and Send it
                     jwt.sign(
                         payload,
                         keys.secretOrKey,
                         {
-                            expiresIn: 30000000
+                            expiresIn: 30000000         // options
                         },
                         (err, token) => {
                             res.json({
                                 success: true,
-                                token: "Bearer" + token
+                                message: "Auth Successful!",
+                                token: "Bearer " + token
                             });
                         }
                     );
                 }
+                // Password did not match with anything in the db
                 else {
-                    return res.status(400).json({ passIncorrect: "Password is incorrect! "});
+                    // Again, security flaw - no need to return too much info - just send 401
+                    // return res.status(400).json({ passIncorrect: "Password is incorrect! "});
+
+                    return res.status(401).json({error: "Auth Failed! Incorrect Username/Password !"})
                 }
             });
         });
