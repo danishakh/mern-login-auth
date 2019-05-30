@@ -111,13 +111,13 @@ router.post("/login", (req, res) => {
                         payload,
                         keys.secretOrKey,
                         {
-                            expiresIn: 30000000         // options
+                            expiresIn: 30000000         // JWT options
                         },
                         (err, token) => {
                             res.json({
                                 success: true,
                                 message: "Auth Successful!",
-                                token: "Bearer " + token
+                                token: `Bearer ${token}`
                             });
                         }
                     );
