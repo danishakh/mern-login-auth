@@ -11,7 +11,7 @@ const passport = require('passport');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const MONGO_URI = process.env.MONGO_URI || keys.mongoURI;
+// const MONGO_URI = process.env.MONGO_URI || keys.mongoURI;
 
 // Configure middleware
 // Use morgan logger for logging requests

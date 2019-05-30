@@ -11,10 +11,10 @@ const validateLoginInput = require("../../validation/login");
 // Load Models
 const User = require("../../models/User");
 
-// Matches /api/users
-
+// All routes below match /api/users
 
 // TO-DO: Move the logic to a 'userController'
+
 
 // @route POST api/users/register
 // @desc Register User

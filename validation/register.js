@@ -29,10 +29,10 @@ module.exports = function validateRegisterInput(data) {
         errors.user_pass = "Password is required";
     }
     if (Validator.isEmpty(data.user_pass2)) {
-        errors.user_pass2 = "Confirm pass field is required";
+        errors.user_pass2 = "Confirm password field is required";
     }
     if (!Validator.isLength(data.user_pass, { min: 6, max: 30 })) {
-        errors.user_pass = "Password must be at least 6 characters";
+        errors.user_pass = "Password must be between 6 & 30 characters";
     }
     if (!Validator.equals(data.user_pass, data.user_pass2)) {
         errors.user_pass2 = "Passwords must match";
