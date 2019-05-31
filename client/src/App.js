@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
 import { Grid } from '@material-ui/core';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Landing from './pages/Landing';
+
 
 function App() {
   return (
@@ -12,12 +14,9 @@ function App() {
             <Navbar />
           </div>
 
-          {/* <Switch>
-            <Route path="/" exact component={TodoList} />
-            <Route path="/edit/:id" component={EditTodo} />
-            <Route path="/create" component={CreateTodo} />
-            <Route component={NotFound} />
-          </Switch> */}
+          <Switch>
+            <Route path="/" exact component={Landing} />
+          </Switch>
 
         </Router>
       </Grid>

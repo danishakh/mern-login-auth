@@ -15,7 +15,7 @@ export default class Navbar extends Component {
         return (
             <AppBar position="static" color="default">
                 <Toolbar>
-                    <Typography variant="h5">
+                    <Typography align="center" variant="h5">
                         <Link
                             style={{fontFamily: "monospace"}}
                             color='textPrimary'
