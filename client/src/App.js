@@ -8,11 +8,9 @@ import Landing from './pages/Landing';
 
 function App() {
   return (
-    <Grid style={{height: '100%'}}>
+    <Grid container style={{height: '100%'}}>
         <Router>
-          <div className="container">
             <Navbar />
-          </div>
 
           <Switch>
             <Route path="/" exact component={Landing} />
