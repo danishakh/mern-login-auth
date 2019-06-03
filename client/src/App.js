@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Landing from './pages/Landing';
+import Register from './pages/Register';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
           <Switch>
             <Route path="/" exact component={Landing} />
+            <Route path="/register" exact component={Register} />
           </Switch>
 
         </Router>

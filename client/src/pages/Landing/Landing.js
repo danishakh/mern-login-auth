@@ -26,7 +26,7 @@ export default class Landing extends Component {
                     </Grid>
                     
                     <Grid container justify="center" alignItems="center" direction="row"  spacing={6} style={{marginTop: 50}}>
-                        <Grid item sm={6} md={3}>
+                        <Grid item sm={3}>
                             <Button
                                 style={{width: 200, height:80, borderRadius: 10, letterSpacing: 1.5}}
                                 variant="contained" 
@@ -39,7 +39,7 @@ export default class Landing extends Component {
                                 Register
                             </Button>
                         </Grid>
-                        <Grid item sm={6} md={3}>
+                        <Grid item sm={3}>
                             <Button 
                                 style={{width: 200, height:80, borderRadius: 10, letterSpacing: 1.5}}
                                 variant="contained" 
