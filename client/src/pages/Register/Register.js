@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link as BrowserLink } from 'react-router-dom';
-import { Container, Grid, TextField, Button } from '@material-ui/core';
+import { Container, Grid, TextField, Button, Paper, Typography } from '@material-ui/core';
 
 export default class Register extends Component {
 
@@ -20,7 +20,7 @@ export default class Register extends Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
-    onSubmitHanlder = e => {
+    onSubmitHandler = e => {
         e.preventDefault();
 
         const newUser = {
@@ -36,9 +36,21 @@ export default class Register extends Component {
     render() {
         return(
             <Container maxWidth="md" style={{marginTop: 100}}>
+            
+            <Grid container alignItems="flex-start" justify="flex-start" style={{margin: 20}}>
+                <Typography>
+                    Back to Home
+                </Typography>
+            </Grid>
+
+            <Paper elevation={10} style={{padding: 30}}>
                 <Grid container spacing={0} direction="column" alignItems="center" justify="center" style={{minHeight: '100 vh'}}>
-                    <Grid item xs={3}>
-                    
+                    <Grid item xs={4} style={{marginBottom: 15}}>
+                        <Typography variant="h4">
+                            Register below
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
                         <form onSubmit={this.onSubmitHandler}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
@@ -85,7 +97,16 @@ export default class Register extends Component {
                                 </Grid>
 
                                 <Grid item xs={12}>
-                                    <Button variant="contained" color="primary" type="submit">
+                                    <Button 
+                                            variant="contained" 
+                                            color="primary" 
+                                            type="submit" 
+                                            style={{
+                                                width: "150px",
+                                                borderRadius: "3px",
+                                                letterSpacing: "1.5px",
+                                                marginTop: "2rem"
+                                            }}>
                                         Register
                                     </Button>
                                 </Grid>
@@ -93,6 +114,7 @@ export default class Register extends Component {
                         </form>
                     </Grid>
                 </Grid>
+                </Paper>
             </Container>
         )
     }
