@@ -111,7 +111,7 @@ router.post("/login", (req, res) => {
                         payload,
                         keys.secretOrKey,
                         {
-                            expiresIn: 30000000         // JWT options
+                            expiresIn: 86400        // 1 day
                         },
                         (err, token) => {
                             res.json({

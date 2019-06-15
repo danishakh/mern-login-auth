@@ -6,22 +6,26 @@ import Navbar from './components/Navbar';
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import { Provider } from "react-redux";
+import store from "./store";
 
 
 function App() {
   return (
-    <Grid container style={{height: '100%'}}>
-        <Router>
-            <Navbar />
+    <Provider store={store}>
+      <Grid container style={{height: '100%'}}>
+          <Router>
+              <Navbar />
 
-          <Switch>
-            <Route path="/" exact component={Landing} />
-            <Route path="/register" exact component={Register} />
-            <Route path="/login" exact component={Login} />
-          </Switch>
+            <Switch>
+              <Route path="/" exact component={Landing} />
+              <Route path="/register" exact component={Register} />
+              <Route path="/login" exact component={Login} />
+            </Switch>
 
-        </Router>
+          </Router>
       </Grid>
+    </Provider>
   );
 }
 
