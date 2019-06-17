@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { Link as BrowserLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
+import { loginUser } from '../../actions/authActions';
+import classnames from 'classnames';
+
 
 
 export default class Login extends Component {
@@ -18,6 +23,20 @@ export default class Login extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        // isAuthenticated is linked to authReducer - check it out
+        // if user object is present in the payload
+        if (nextProps.auth.isAuthenticated) {
+          this.props.history.push("/dashboard"); // push user to dashboard when they login
+        }
+    
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+    }
+
     onChangeHandler = e => {
         this.setState({ [e.target.id]: e.target.value });
     }
@@ -30,7 +49,8 @@ export default class Login extends Component {
             password: this.state.password
         };
 
-        console.log(userData);
+        //console.log(userData);
+        this.props.loginUser(userData); 
     }
 
     render() {
@@ -77,6 +97,9 @@ export default class Login extends Component {
                                         value={this.state.email}
                                         onChange={this.onChangeHandler}
                                         error={errors.email}
+                                        className={classnames("", {
+                                            invalid: errors.email || errors.emailnotfound
+                                        })}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -89,6 +112,9 @@ export default class Login extends Component {
                                         value={this.state.password}
                                         onChange={this.onChangeHandler}
                                         error={errors.password}
+                                        className={classnames("", {
+                                            invalid: errors.password || errors.passwordincorrect
+                                        })}
                                     />
                                 </Grid>
 
@@ -116,3 +142,19 @@ export default class Login extends Component {
     }
 
 }
+
+// propTypes validation
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+// map our redux state to props
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+// connect the redux state to our react component
+export default connect(mapStateToProps, { loginUser })(Login);
