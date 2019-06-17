@@ -94,10 +94,10 @@ class Login extends Component {
                                         fullWidth
                                         value={this.state.email}
                                         onChange={this.onChangeHandler}
-                                        error={errors.email}
-                                        className={classnames("", {
-                                            invalid: errors.email || errors.emailnotfound
-                                        })}
+                                        //error={errors.email}
+                                        // className={classnames("", {
+                                        //     invalid: errors.email || errors.emailnotfound
+                                        // })}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -109,10 +109,10 @@ class Login extends Component {
                                         fullWidth
                                         value={this.state.password}
                                         onChange={this.onChangeHandler}
-                                        error={errors.password}
-                                        className={classnames("", {
-                                            invalid: errors.password || errors.passwordincorrect
-                                        })}
+                                        //error={errors.password}
+                                        // className={classnames("", {
+                                        //     invalid: errors.password || errors.passwordincorrect
+                                        // })}
                                     />
                                 </Grid>
 

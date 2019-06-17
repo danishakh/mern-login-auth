@@ -20,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
-// Login - get user token
+// Log user in - get decoded jwt user token
 export const loginUser = userData => dispatch => {
   axios
     .post("/api/users/login", userData)

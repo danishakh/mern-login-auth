@@ -39,10 +39,10 @@ class Register extends Component {
         e.preventDefault();
 
         const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            password2: this.state.password2
+            user_name: this.state.name,
+            user_email: this.state.email,
+            user_pass: this.state.password,
+            user_pass2: this.state.password2
         };
 
         //console.log(newUser);
