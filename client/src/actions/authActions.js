@@ -1,5 +1,5 @@
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
+import setAuthToken from "../utils/authToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
@@ -31,9 +31,11 @@ export const loginUser = userData => dispatch => {
 
       // Set token to Auth header
       setAuthToken(token);
+
       // Decode JWT token to get user data
       const decoded = jwt_decode(token);
-      // Set current user with the decoded userData
+
+      // Set current user with the decoded userData - dispatch this action to our authReducer
       dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
@@ -63,8 +65,10 @@ export const setUserLoading = () => {
 export const logoutUser = () => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");
+
   // Remove auth header for future requests
   setAuthToken(false);
+  
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };

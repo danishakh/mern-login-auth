@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Link as BrowserLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
+import { registerUser } from '../../actions/authActions';
+import classnames from 'classnames';
 
 
-export default class Register extends Component {
+
+class Register extends Component {
 
     constructor() {
         super();
@@ -15,6 +20,14 @@ export default class Register extends Component {
             password: '',
             password2: '',
             errors: {}
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
         }
     }
 
@@ -32,7 +45,8 @@ export default class Register extends Component {
             password2: this.state.password2
         };
 
-        console.log(newUser);
+        //console.log(newUser);
+        this.props.registerUser(newUser, this.props.history); 
     }
 
     render() {
@@ -78,6 +92,9 @@ export default class Register extends Component {
                                         value={this.state.name}
                                         onChange={this.onChangeHandler}
                                         error={errors.name}
+                                        className={classnames("", {
+                                            invalid: errors.name
+                                        })}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -89,6 +106,9 @@ export default class Register extends Component {
                                         value={this.state.email}
                                         onChange={this.onChangeHandler}
                                         error={errors.email}
+                                        className={classnames("", {
+                                            invalid: errors.email
+                                        })}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -101,6 +121,9 @@ export default class Register extends Component {
                                         value={this.state.password}
                                         onChange={this.onChangeHandler}
                                         error={errors.password}
+                                        className={classnames("", {
+                                            invalid: errors.password
+                                        })}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -113,6 +136,9 @@ export default class Register extends Component {
                                         value={this.state.password2}
                                         onChange={this.onChangeHandler}
                                         error={errors.password2}
+                                        className={classnames("", {
+                                            invalid: errors.password2
+                                        })}
                                     />
                                 </Grid>
 
@@ -140,3 +166,21 @@ export default class Register extends Component {
     }
 
 }
+
+// this function will allow us to get our state from redux and map it to 'props'
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+// propTypes validation
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+
+// withRouter(Register) - since we can't just do a 'history.push(/toSomewhere)' in an action, we need to use withRouter 
+// to allow us to redirect within an action
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));

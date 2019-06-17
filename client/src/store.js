@@ -4,7 +4,6 @@ import rootReducer from "./reducers";
 
 // NOTE @SELF: refer to 'redux-example' for detailed explanation on redux setup
 
-
 const initialState = {};
 const middleware = [thunk];
 
