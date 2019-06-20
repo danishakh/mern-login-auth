@@ -25,9 +25,12 @@ class Dashboard extends Component {
                     <Grid item>
                         <br />
                         <br />
-                        <Typography align="center" color="textPrimary" variant="h6">
-                            Welcome <span style={{fontFamily: 'monospace'}}>{user.user_name}</span> {" "}
-                            You are now logged in full-stack <span style={{fontFamily: 'monospace'}}>MERN</span> app!
+                        <Typography align="center" color="textPrimary" variant="h5">
+                            Welcome <span style={{fontFamily: 'monospace'}}>{user.user_name.split(' ')[0]}</span> {"!"} 
+                        </Typography>
+                        <Typography align="center" color="textSecondary" variant="h6">
+                            <br />
+                            This is a protected page. You are now logged in full-stack <span style={{fontFamily: 'monospace'}}>MERN</span> app!
                         </Typography>
                     </Grid>
                     
