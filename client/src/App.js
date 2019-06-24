@@ -16,6 +16,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import NotFound from './pages/NotFound';
 
 
 // check for JWT in localStorage to keep user logged in even if they close or refresh app
@@ -55,6 +56,7 @@ function App() {
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
+              <Route component={NotFound} />
             </Switch>
 
           </Router>
