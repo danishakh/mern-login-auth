@@ -3,8 +3,14 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+// We will create our own 'cool' Route component - takes in a path, a component and rest of the passed in props
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
-    <Route {...rest}
+
+    // render a Route
+    <Route 
+        {...rest}
+
+        // user React's render prop - whenever a user is authenticated, render the requested component - else redirect to login page
         render={props => 
             auth.isAuthenticated === true 
             ? (<Component {...props} />) 
