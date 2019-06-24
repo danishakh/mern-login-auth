@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { Link as BrowserLink } from "react-router-dom";
 import {Grid, Container, Typography, Button} from '@material-ui/core';
+import { connect } from 'react-redux';
 
 
-export default class Landing extends Component {
+class Landing extends Component {
 
+    componentWillMount(){
+        // if user is logged in and tries to navigate to Landing page, redirect to dashboard
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+    }
 
     render() {
 
@@ -59,3 +66,11 @@ export default class Landing extends Component {
         )
     }
 }
+
+// map our redux state to props
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+// connect the redux state to our react component
+export default connect(mapStateToProps)(Landing);
