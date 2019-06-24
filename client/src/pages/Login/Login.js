@@ -21,6 +21,13 @@ class Login extends Component {
         }
     }
 
+    componentWillMount(){
+        // if user is logged in and tries to navigate to Login page, redirect to dashboard
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         // isAuthenticated is linked to authReducer - check it out
         // if user object is present in the payload
