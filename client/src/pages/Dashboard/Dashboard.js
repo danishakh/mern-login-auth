@@ -26,11 +26,11 @@ class Dashboard extends Component {
                         <br />
                         <br />
                         <Typography align="center" color="textPrimary" variant="h5">
-                            Welcome <span style={{fontFamily: 'monospace'}}>{user.user_name.split(' ')[0]}</span> {"!"} 
+                            Welcome <b>{user.user_name.split(' ')[0]}</b> {"!"} 
                         </Typography>
                         <Typography align="center" color="textSecondary" variant="h6">
                             <br />
-                            This is a protected page. You are now logged in full-stack <span style={{fontFamily: 'monospace'}}>MERN</span> app!
+                            This is a <b>protected</b> page. You are now logged into a full-stack <span style={{fontFamily: 'monospace'}}>MERN</span> app!
                         </Typography>
                     </Grid>
                     
