@@ -5,8 +5,6 @@ import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
 import { registerUser } from '../../actions/authActions';
-import classnames from 'classnames';
-
 
 
 class Register extends Component {
@@ -98,10 +96,8 @@ class Register extends Component {
                                         fullWidth
                                         value={this.state.name}
                                         onChange={this.onChangeHandler}
-                                        error={errors.name}
-                                        className={classnames("", {
-                                            invalid: errors.name
-                                        })}
+                                        error={errors.user_name}
+                                        helperText={errors.user_name}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -112,10 +108,8 @@ class Register extends Component {
                                         fullWidth
                                         value={this.state.email}
                                         onChange={this.onChangeHandler}
-                                        error={errors.email}
-                                        className={classnames("", {
-                                            invalid: errors.email
-                                        })}
+                                        error={errors.user_email}
+                                        helperText={errors.user_email}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -127,10 +121,8 @@ class Register extends Component {
                                         fullWidth
                                         value={this.state.password}
                                         onChange={this.onChangeHandler}
-                                        error={errors.password}
-                                        className={classnames("", {
-                                            invalid: errors.password
-                                        })}
+                                        error={errors.user_pass}
+                                        helperText={errors.user_pass}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -142,10 +134,8 @@ class Register extends Component {
                                         fullWidth
                                         value={this.state.password2}
                                         onChange={this.onChangeHandler}
-                                        error={errors.password2}
-                                        className={classnames("", {
-                                            invalid: errors.password2
-                                        })}
+                                        error={errors.user_pass2}
+                                        helperText={errors.user_pass2}
                                     />
                                 </Grid>
 
