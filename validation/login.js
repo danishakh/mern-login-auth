@@ -11,14 +11,14 @@ module.exports = function validateRegisterInput(data) {
 
     // Email checks
     if (Validator.isEmpty(data.user_email)) {
-        errors.email = "Email field is required";
+        errors.user_email = "Email field is required";
     } else if (!Validator.isEmail(data.user_email)) {
-        errors.email = "Email is invalid";
+        errors.user_email = "Email is invalid";
     }
 
     // Password checks
     if (Validator.isEmpty(data.user_pass)) {
-        errors.password = "Password field is required";
+        errors.user_pass = "Password field is required";
     }
     
     return {

@@ -5,7 +5,6 @@ import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
 import { loginUser } from '../../actions/authActions';
-import classnames from 'classnames';
 
 
 
@@ -101,10 +100,8 @@ class Login extends Component {
                                         fullWidth
                                         value={this.state.email}
                                         onChange={this.onChangeHandler}
-                                        error={errors.email}
-                                        className={classnames("", {
-                                            invalid: errors.email || errors.emailnotfound
-                                        })}
+                                        error={errors.user_email}
+                                        helperText={errors.user_email}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -116,10 +113,8 @@ class Login extends Component {
                                         fullWidth
                                         value={this.state.password}
                                         onChange={this.onChangeHandler}
-                                        error={errors.password}
-                                        className={classnames("", {
-                                            invalid: errors.password || errors.passwordincorrect
-                                        })}
+                                        error={errors.user_pass}
+                                        helperText={errors.user_pass}
                                     />
                                 </Grid>
 
