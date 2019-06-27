@@ -127,7 +127,7 @@ router.post("/login", (req, res) => {
                     // Again, security flaw - no need to return too much info - just send 401
                     // return res.status(400).json({ passIncorrect: "Password is incorrect! "});
 
-                    return res.status(401).json({error: "Auth Failed! Incorrect Username/Password !"})
+                    return res.status(401).json({error: "Auth Failed! Incorrect Username/Password!"})
                 }
             });
         });
