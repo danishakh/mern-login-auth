@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Slide from '@material-ui/core/Slide';
 import ErrorIcon from '@material-ui/icons/Error';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.error.dark,
     },
     icon: {
-      fontSize: 20,
+      fontSize: 20
     },
     iconVariant: {
       opacity: 0.9,
@@ -25,6 +25,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+function SlideTransition(props) {
+    return <Slide {...props} direction="up" />;
+}
+  
+
 function MySnackbarContentWrapper(props) {
     const classes = useStyles();
     const { className, message, onClose, variant, ...other} = props;
@@ -35,7 +40,7 @@ function MySnackbarContentWrapper(props) {
             aria-describedby='error-snackbar'
             message={
                 <span id='error-snackbar' className={classes.message}>
-                    <ErrorIcon />
+                    <ErrorIcon className={classes.iconVariant} />
                     {message}
                 </span>
             }
@@ -49,46 +54,25 @@ function MySnackbarContentWrapper(props) {
     )
 }
 
-export default class ErrorSnackbar extends Component {
+export default function ErrorSnackbar(props) {
 
-    constructor(){
-        super()
+    return (
+        <Snackbar
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center'
+            }}
+            open={props.open}
+            autoHideDuration={3000}
+            onClose={props.handleClose}
+            onEntered={props.onEntered}
+        >
+            <MySnackbarContentWrapper 
+                onClose={props.handleClose}
+                variant='error'
+                message={props.message}
+            />
 
-        this.state = {
-            open: false,
-            errors: {}
-        }
-    }
-    
-
-    handleOpen = (error) => {
-        this.setState({open: true, errors: error})
-    }
-
-    handleClose = () => {
-        this.setState({open: false})
-    }
-    
-    render(){
-        return (
-            <Snackbar
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center'
-                }}
-                open={this.state.open}
-                autoHideDuration={3000}
-                onClose={this.handleClose}
-            >
-                <MySnackbarContentWrapper 
-                    onClose={this.handleClose}
-                    variant='error'
-                    message={this.state.errors}
-                />
-    
-            </Snackbar>
-        )
-    }
-    
+        </Snackbar>
+    )
 }
-

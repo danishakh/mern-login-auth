@@ -5,6 +5,7 @@ import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
 import { loginUser } from '../../actions/authActions';
+import ErrorSnackbar from '../../components/ErrorSnackbar';
 
 
 
@@ -13,10 +14,15 @@ class Login extends Component {
     constructor() {
         super();
 
+        // TO FOCUS PASSWORD TEXTFIELD - CURRENTLY NOT WORKING
+        this.textInputPass = React.createRef();
+        this.focus = this.focus.bind(this);
+
         this.state = {
             email: '',
             password: '',
-            errors: {}
+            errors: {},
+            open: false
         }
     }
 
@@ -36,9 +42,19 @@ class Login extends Component {
     
         if (nextProps.errors) {
           this.setState({
-            errors: nextProps.errors
+            errors: nextProps.errors,
+          }, () => {
+              // callback - if errors object has an 'error' property, trigger Snackbar Open
+              if (this.state.errors.error) {
+                  this.setState({open: true});
+              }
           });
         }
+    }
+
+    // Snackbar Close
+    handleClose = () => {
+        this.setState({open: false})
     }
 
     onChangeHandler = e => {
@@ -55,6 +71,12 @@ class Login extends Component {
 
         //console.log(userData);
         this.props.loginUser(userData); 
+    }
+
+    // NOT WORKING - WILL FIX LATER
+    focus() {
+        this.textInputPass.current.focus();
+        //console.log(this.textInputPass)
     }
 
     render() {
@@ -115,6 +137,7 @@ class Login extends Component {
                                         onChange={this.onChangeHandler}
                                         error={errors.user_pass}
                                         helperText={errors.user_pass}
+                                        ref={this.textInputPass}
                                     />
                                 </Grid>
 
@@ -137,6 +160,13 @@ class Login extends Component {
                     </Grid>
                 </Grid>
                 </Paper>
+
+                <ErrorSnackbar 
+                    open={this.state.open}
+                    handleClose={this.handleClose}
+                    message={errors.error}
+                    onEntered={this.focus}
+                />
             </Container>
         )
     }
