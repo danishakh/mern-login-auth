@@ -5,6 +5,7 @@ import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
 import { registerUser } from '../../actions/authActions';
+import ErrorSnackbar from '../../components/ErrorSnackbar';
 
 
 class Register extends Component {
@@ -17,7 +18,8 @@ class Register extends Component {
             email: '',
             password: '',
             password2: '',
-            errors: {}
+            errors: {},
+            open: false
         }
     }
 
@@ -32,8 +34,18 @@ class Register extends Component {
         if (nextProps.errors) {
           this.setState({
             errors: nextProps.errors
-          });
+          }, () => {
+                // callback - if errors object has an 'error' property, trigger Snackbar Open
+                if (this.state.errors.error) {
+                    this.setState({open: true});
+                }
+            })
         }
+    }
+
+    // Snackbar Close
+    handleClose = () => {
+        this.setState({open: false})
     }
 
     onChangeHandler = e => {
@@ -158,6 +170,12 @@ class Register extends Component {
                     </Grid>
                 </Grid>
                 </Paper>
+
+                <ErrorSnackbar 
+                    open={this.state.open}
+                    handleClose={this.handleClose}
+                    message={errors.error}
+                />
             </Container>
         )
     }
