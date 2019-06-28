@@ -2,15 +2,26 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Slide from '@material-ui/core/Slide';
+import clsx from 'clsx';
+import { green } from '@material-ui/core/colors';
 import ErrorIcon from '@material-ui/icons/Error';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 
+const variantIcon = {
+    success: CheckCircleIcon,
+    error: ErrorIcon
+};
+
 const useStyles = makeStyles(theme => ({
     error: {
       backgroundColor: theme.palette.error.dark,
+    },
+    success: {
+        backgroundColor: green[600]
     },
     icon: {
       fontSize: 20
@@ -25,14 +36,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function SlideTransition(props) {
-    return <Slide {...props} direction="up" />;
-}
+// This shit ain't working - will fix later
+// function SlideTransition(props) {
+//     return <Slide {...props} direction="up" />;
+// }
   
 
 function MySnackbarContentWrapper(props) {
     const classes = useStyles();
     const { className, message, onClose, variant, ...other} = props;
+    const Icon = variantIcon[variant];
 
     return (
         <SnackbarContent 
@@ -40,7 +53,7 @@ function MySnackbarContentWrapper(props) {
             aria-describedby='error-snackbar'
             message={
                 <span id='error-snackbar' className={classes.message}>
-                    <ErrorIcon className={classes.iconVariant} />
+                    <Icon className={clsx(classes.icon, classes.iconVariant)} />
                     {message}
                 </span>
             }
@@ -69,7 +82,7 @@ export default function ErrorSnackbar(props) {
         >
             <MySnackbarContentWrapper 
                 onClose={props.handleClose}
-                variant='error'
+                variant={props.variant}
                 message={props.message}
             />
 

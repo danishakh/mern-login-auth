@@ -162,6 +162,7 @@ class Login extends Component {
                 </Paper>
 
                 <ErrorSnackbar 
+                    variant='error'
                     open={this.state.open}
                     handleClose={this.handleClose}
                     message={errors.error}

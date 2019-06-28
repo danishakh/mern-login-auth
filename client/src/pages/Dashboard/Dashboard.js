@@ -3,8 +3,26 @@ import {Grid, Container, Typography, Button} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import ErrorSnackbar from '../../components/ErrorSnackbar';
 
 class Dashboard extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            open: false     //ErrorSnackbar toggle
+        }
+    }
+
+    componentDidMount() {
+        this.setState({open: true});
+    }
+
+    // Snackbar Close
+    handleClose = () => {
+        this.setState({open: false})
+    }
 
     onLogoutClick = e => {
         e.preventDefault();
@@ -48,8 +66,15 @@ class Dashboard extends Component {
                             </Button>
                         </Grid>
                     </Grid>
-                    
                 </Grid>
+
+                <ErrorSnackbar 
+                    variant='success'
+                    open={this.state.open}
+                    handleClose={this.handleClose}
+                    message='Login Successful!'
+                    onEntered={this.focus}
+                />
             </Container>
         )
     }
