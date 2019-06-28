@@ -5,7 +5,7 @@ import { Link as BrowserLink, withRouter } from 'react-router-dom';
 import { Container, Grid, TextField, Button, Paper, Typography, Link } from '@material-ui/core';
 import BackIcon from '@material-ui/icons/KeyboardBackspaceSharp';
 import { loginUser } from '../../actions/authActions';
-import ErrorSnackbar from '../../components/ErrorSnackbar';
+import NotifSnackbar from '../../components/NotifSnackbar';
 
 
 
@@ -161,7 +161,7 @@ class Login extends Component {
                 </Grid>
                 </Paper>
 
-                <ErrorSnackbar 
+                <NotifSnackbar 
                     variant='error'
                     open={this.state.open}
                     handleClose={this.handleClose}

@@ -67,7 +67,7 @@ function MySnackbarContentWrapper(props) {
     )
 }
 
-export default function ErrorSnackbar(props) {
+export default function NotifSnackbar(props) {
 
     return (
         <Snackbar

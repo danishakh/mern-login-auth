@@ -3,7 +3,7 @@ import {Grid, Container, Typography, Button} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import ErrorSnackbar from '../../components/ErrorSnackbar';
+import NotifSnackbar from '../../components/NotifSnackbar';
 
 class Dashboard extends Component {
 
@@ -68,7 +68,7 @@ class Dashboard extends Component {
                     </Grid>
                 </Grid>
 
-                <ErrorSnackbar 
+                <NotifSnackbar 
                     variant='success'
                     open={this.state.open}
                     handleClose={this.handleClose}
