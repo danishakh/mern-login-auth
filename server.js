@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const logger = require("morgan");
 const cors = require('cors');
-const keys = require("./config/keys.js");
+// const keys = require("./config/keys.js");		commenting this out as we don't need it in production
 const path = require('path');
 const passport = require('passport');
 
