@@ -9,7 +9,7 @@ Key Technologies used:
 - `redux` for application state management between components
 
 ## Quick Start
-```
+```javascript
 // Install dependencies for server & client
 npm install && npm run client-install
 
@@ -21,7 +21,7 @@ npm run dev
 
 ## Configuration
 Don't forget to add your own `mongoURI` from your mLab database instance, and your JWT secret `key` in `config/keys.js`.
-```
+```javascript
 module.exports = {
     mongoURI: '<your_mongo_uri_here>',
     secretOrKey: '<your_secret>'
