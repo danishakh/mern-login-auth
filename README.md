@@ -5,7 +5,7 @@ This is a minimal full-stack **MERN** app with authentication using JSON web tok
 Click [here](https://mern-login-auth.herokuapp.com/) to checkout deployed application via Heroku.
 
 
-## Key Technologies used:
+## Key Technologies:
 - `react`, `react router`, `material-ui` for front-end
 - `node`, `express`, `passport`, `jsonwebtoken` for server-side and authentication
 - `mongo`, `mongoose` for the database
