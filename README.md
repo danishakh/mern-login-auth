@@ -2,6 +2,8 @@
 
 This is a minimal full-stack **MERN** app with authentication using JSON web tokens and PassportJS. 
 
+Click [here](https://mern-login-auth.herokuapp.com/) to checkout deployed application via Heroku.
+
 Key Technologies used:
 - `react`, `react router`, `material-ui` for front-end
 - `node`, `express`, `passport`, `jsonwebtoken` for server-side and authentication
@@ -27,5 +29,11 @@ module.exports = {
     secretOrKey: '<your_secret>'
 }
 ```
+And remove the comments in `server.js`, `/config/passport.js` and `routes/api/users.js` for the above `mongoURI` and 'secretOrKey` properties when using `config/keys.js`. 
 
-And remove the comments in `server.js` and `routes/api/users.js` for the above object.
+
+### Tutorial/Medium Series
+Huge thanks to the tutorial series by Rishi Prasad on Medium!
+- [Build a Login/Auth App with the MERN Stack - Part 1 (Backend)](https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669)
+- [Build a Login/Auth App with the MERN Stack - Part 2 (Frontend & Redux Setup)](https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-2-frontend-6eac4e38ee82)
+- [Build a Login/Auth App with the MERN Stack - Part 3 (Linking Redux with React Components)](https://blog.bitsrc.io/build-a-login-auth-app-with-the-mern-stack-part-3-react-components-88190f8db718)
