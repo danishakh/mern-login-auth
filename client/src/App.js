@@ -53,11 +53,10 @@ function App() {
               <Route path="/" exact component={Landing} />
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
-              <Route component={NotFound} />
               <Switch>
                 <PrivateRoute path='/dashboard' exact component={Dashboard} />
               </Switch>
-
+              <Route component={NotFound} />
           </Router>
       </Grid>
     </Provider>
