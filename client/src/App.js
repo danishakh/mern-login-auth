@@ -50,14 +50,13 @@ function App() {
       <Grid container style={{height: '100%'}}>
           <Router>
               <Navbar />
-
-            <Switch>
               <Route path="/" exact component={Landing} />
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
-              <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <Route component={NotFound} />
-            </Switch>
+              <Switch>
+                <PrivateRoute path='/dashboard' exact component={Dashboard} />
+              </Switch>
 
           </Router>
       </Grid>
