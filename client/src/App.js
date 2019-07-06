@@ -48,7 +48,7 @@ function App() {
   return (
     <Provider store={store}>
       <Grid container style={{height: '100%'}}>
-          <Router history={ history }>
+          <Router>
               <Navbar />
 
             <Switch>
